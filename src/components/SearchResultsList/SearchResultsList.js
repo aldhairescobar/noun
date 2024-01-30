@@ -1,5 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
+import { truncateString } from "../../utils";
 
 function SearchResultsList({ searchResults }) {
   if (searchResults === undefined || searchResults.length === 0) {
@@ -15,7 +16,7 @@ function SearchResultsList({ searchResults }) {
             alt=""
           />
           <Info>
-            <Title>{volumeInfo.title}</Title>
+            <Title>{truncateString(volumeInfo.title, 40)}</Title>
             <Author>by {volumeInfo.authors}</Author>
           </Info>
         </BookItem>

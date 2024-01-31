@@ -13,7 +13,9 @@ body {
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  font-family: "Lato", sans-serif;
+  font-family: "ABeeZee", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 img,
 picture,
@@ -41,6 +43,11 @@ h6 {
 #root,
 #__next {
   isolation: isolate;
+}
+
+#root {
+  display: flex;
+  height: 100%;
 }
 
 /*  */

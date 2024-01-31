@@ -30,8 +30,22 @@ function App() {
 
   return (
     <>
+      <Aside>
+        <header>
+          <a href="/">noun</a>
+          <a href="/">Home</a>
+        </header>
+        <p>All Books</p>
+        <ol>
+          <li>To Read</li>
+          <li>Reading</li>
+          <li>Finished</li>
+        </ol>
+        <div>
+          <img />
+        </div>
+      </Aside>
       <Wrapper>
-        <aside></aside>
         <main>
           <FormWrapper>
             <Form onSubmit={handleSubmit}>
@@ -65,6 +79,16 @@ function App() {
 
 /* Header, search component */
 
+const Aside = styled.aside`
+  padding: 30px 40px;
+  color: white;
+  background-color: #4b2484;
+
+  a {
+    color: inherit;
+  }
+`;
+
 const visuallyHidden = {
   position: "absolute",
   overflow: "hidden",
@@ -76,7 +100,7 @@ const visuallyHidden = {
   border: 0,
 };
 
-const FormWrapper = styled.header`
+const FormWrapper = styled.div`
   display: flex;
   justify-content: center;
 `;

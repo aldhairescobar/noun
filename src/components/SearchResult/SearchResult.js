@@ -4,7 +4,19 @@ import { truncateString } from "../../utils";
 
 /* Truncate authors too... */
 
-function SearchResult({ id, volumeInfo }) {
+function SearchResult({ id, ...rest }) {
+  console.log(rest);
+
+  return (
+    <BookItem>
+      <img src={rest.src} alt="" />
+      <Info>
+        <Title>{truncateString(rest.title, 40)}</Title>
+        <Author>by {rest.authors} </Author>
+      </Info>
+    </BookItem>
+  );
+
   return (
     <BookItem>
       <img
@@ -20,7 +32,8 @@ function SearchResult({ id, volumeInfo }) {
 }
 
 const BookItem = styled.div`
-  width: 250px;
+  flex: 1 1 250px;
+  max-width: 350px;
   height: 330px;
   display: flex;
   flex-direction: column;

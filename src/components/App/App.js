@@ -1,4 +1,5 @@
 import React from "react";
+import Sidebar from "../Sidebar";
 import { styled } from "styled-components";
 import SearchResultsList from "../SearchResultsList/SearchResultsList";
 
@@ -30,23 +31,9 @@ function App() {
 
   return (
     <>
-      <Aside>
-        <header>
-          <a href="/">noun</a>
-          <a href="/">Home</a>
-        </header>
-        <p>All Books</p>
-        <ol>
-          <li>To Read</li>
-          <li>Reading</li>
-          <li>Finished</li>
-        </ol>
-        <div>
-          <img />
-        </div>
-      </Aside>
-      <Wrapper>
-        <main>
+      <Sidebar />
+      <main style={{ paddingLeft: "220px" }}>
+        <Wrapper>
           <FormWrapper>
             <Form onSubmit={handleSubmit}>
               <label style={visuallyHidden} htmlFor="Search">
@@ -65,29 +52,19 @@ function App() {
               <SubmitBtn>Search</SubmitBtn>
             </Form>
           </FormWrapper>
-          {status === "idle" && <p>Welcome to Noun!</p>}
+          {/* {status === "idle" && <p>Welcome to Noun!</p>}
           {status === "loading" && <p>Searching...</p>}
-          {status === "error" && <p>Something went wrong!</p>}
-          {status === "success" && (
+          {status === "error" && <p>Something went wrong!</p>} */}
+          {status === "idle" && (
             <SearchResultsList searchResults={searchResults} />
           )}
-        </main>
-      </Wrapper>
+        </Wrapper>
+      </main>
     </>
   );
 }
 
 /* Header, search component */
-
-const Aside = styled.aside`
-  padding: 30px 40px;
-  color: white;
-  background-color: #4b2484;
-
-  a {
-    color: inherit;
-  }
-`;
 
 const visuallyHidden = {
   position: "absolute",
@@ -130,8 +107,9 @@ const SubmitBtn = styled.button`
 `;
 
 const Wrapper = styled.div`
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
+  text-align: center;
   padding-top: 30px;
 `;
 

@@ -4,7 +4,7 @@ import { truncateString } from "../../utils";
 
 /* Truncate authors too... */
 
-function SearchResult({ id, ...rest }) {
+function BookCard({ id, ...rest }) {
   console.log(rest);
 
   return (
@@ -71,4 +71,4 @@ const Author = styled.p`
   color: hsl(0, 0%, 30%);
 `;
 
-export default SearchResult;
+export default BookCard;

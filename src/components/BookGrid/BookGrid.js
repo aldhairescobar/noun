@@ -1,8 +1,8 @@
 import React from "react";
-import SearchResult from "../SearchResult";
+import BookCard from "../BookCard";
 import { styled } from "styled-components";
 
-function SearchResultsList({ searchResults }) {
+function BookGrid({ searchResults }) {
   /* if (searchResults === undefined || searchResults.length === 0) {
     return <p>No Results</p>;
   } */
@@ -14,7 +14,7 @@ function SearchResultsList({ searchResults }) {
       ))} */}
 
       {BOOKS.map(({ id, ...rest }) => (
-        <SearchResult key={id} {...rest} />
+        <BookCard key={id} {...rest} />
       ))}
     </Wrapper>
   );
@@ -105,4 +105,4 @@ const BOOKS = [
   },
 ];
 
-export default SearchResultsList;
+export default BookGrid;

@@ -1,12 +1,13 @@
 import React from "react";
-import profilePic from "../../assets/profile-pic.png";
+import Logo from "../Logo";
 import { styled } from "styled-components";
+import profilePic from "../../assets/profile-pic.png";
 
 function Sidebar() {
   return (
     <Aside>
       <Header>
-        <Logo href="/">noun</Logo>
+        <Logo />
         <a href="/">Home</a>
       </Header>
       <p>All Books</p>
@@ -65,12 +66,6 @@ const Header = styled.header`
   a:nth-of-type(2) {
     font-size: 1.25rem;
   }
-`;
-
-const Logo = styled.a`
-  font-size: 1.75rem;
-  margin-bottom: 50px;
-  width: fit-content;
 `;
 
 const Nav = styled.ol`

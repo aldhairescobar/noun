@@ -1,5 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
+import { QUERIES } from "../../constants";
 import { truncateString } from "../../utils";
 
 /* Truncate authors too... */
@@ -9,7 +10,7 @@ function BookCard({ id, ...rest }) {
 
   return (
     <BookItem>
-      <img src={rest.src} alt="" />
+      <Image src={rest.src} alt="" />
       <Info>
         <Title>{truncateString(rest.title, 40)}</Title>
         <Author>by {rest.authors} </Author>
@@ -42,12 +43,34 @@ const BookItem = styled.div`
   border-radius: 10px;
   padding: 20px;
 
-  img {
-    width: 150px;
-    height: 190px;
-    object-fit: cover;
-    object-position: 0 0;
-    margin: 0 auto;
+  @media ${QUERIES.laptopAndSmaller} {
+    flex-basis: 230px;
+    max-width: 250px;
+    height: 310px;
+  }
+
+  @media ${QUERIES.tabletAndSmaller} {
+    flex-basis: 200px;
+    max-width: 250px;
+    height: 290px;
+  }
+`;
+
+const Image = styled.img`
+  width: 150px;
+  height: 190px;
+  object-fit: cover;
+  object-position: 0 0;
+  margin: 0 auto;
+
+  @media ${QUERIES.laptopAndSmaller} {
+    width: 130px;
+    height: 170px;
+  }
+
+  @media ${QUERIES.laptopAndSmaller} {
+    width: 110px;
+    height: 140px;
   }
 `;
 
@@ -58,17 +81,29 @@ const Info = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @media ${QUERIES.laptopAndSmaller} {
+    padding-top: 18px;
+  }
 `;
 
 const Title = styled.h3`
   font-weight: 400;
-  font-size: 0.95rem;
+  font-size: ${15 / 16}rem;
   color: hsl(0, 0%, 10%);
+
+  @media ${QUERIES.laptopAndSmaller} {
+    font-size: ${14 / 16}rem;
+  }
 `;
 
 const Author = styled.p`
-  font-size: 0.95rem;
+  font-size: ${15 / 16}rem;
   color: hsl(0, 0%, 30%);
+
+  @media ${QUERIES.laptopAndSmaller} {
+    font-size: ${14 / 16}rem;
+  }
 `;
 
 export default BookCard;

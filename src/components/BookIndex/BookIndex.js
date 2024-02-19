@@ -1,7 +1,9 @@
 import React from "react";
 import Sidebar from "../Sidebar";
-import { styled } from "styled-components";
 import BookGrid from "../BookGrid";
+import Header from "../Header";
+import { styled } from "styled-components";
+import { QUERIES } from "../../constants";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const ENDPOINT = "https://www.googleapis.com/books/v1/volumes?q=";
@@ -31,9 +33,12 @@ function BookIndex() {
 
   return (
     <>
-      <Sidebar />
-      <main style={{ paddingLeft: "220px" }}>
-        <Wrapper>
+      <Header />
+      <DesktopMenu>
+        <Sidebar />
+      </DesktopMenu>
+      <Main>
+        <Container>
           <FormWrapper>
             <Form onSubmit={handleSubmit}>
               <label style={visuallyHidden} htmlFor="Search">
@@ -56,13 +61,27 @@ function BookIndex() {
           {status === "loading" && <p>Searching...</p>}
           {status === "error" && <p>Something went wrong!</p>} */}
           {status === "idle" && <BookGrid searchResults={searchResults} />}
-        </Wrapper>
-      </main>
+        </Container>
+      </Main>
     </>
   );
 }
 
 /* Header, search component */
+
+const DesktopMenu = styled.div`
+  @media ${QUERIES.tabletAndSmaller} {
+    display: none;
+  }
+`;
+
+const Main = styled.main`
+  padding-left: 220px;
+
+  @media ${QUERIES.tabletAndSmaller} {
+    padding-left: 0;
+  }
+`;
 
 const visuallyHidden = {
   position: "absolute",
@@ -78,11 +97,23 @@ const visuallyHidden = {
 const FormWrapper = styled.div`
   display: flex;
   justify-content: center;
+
+  @media ${QUERIES.tabletAndSmaller} {
+    justify-content: flex-start;
+    margin-left: 32px;
+    margin-right: 32px;
+  }
 `;
 
 const Form = styled.form`
   width: 536px;
   height: 42px;
+
+  display: flex;
+
+  @media ${QUERIES.tabletAndSmaller} {
+    width: 500px;
+  }
 `;
 
 const TextInput = styled.input`
@@ -95,7 +126,7 @@ const TextInput = styled.input`
 `;
 
 const SubmitBtn = styled.button`
-  width: 18%;
+  width: min-content;
   height: 100%;
   background-color: #ffd375;
   border: none;
@@ -104,11 +135,15 @@ const SubmitBtn = styled.button`
   border: 1px solid transparent;
 `;
 
-const Wrapper = styled.div`
+const Container = styled.div`
   max-width: 1000px;
   margin: 0 auto;
   text-align: center;
   padding-top: 30px;
+
+  @media ${QUERIES.tabletAndSmaller} {
+    padding-top: 16px;
+  }
 `;
 
 export default BookIndex;

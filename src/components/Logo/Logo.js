@@ -11,7 +11,9 @@ function Logo() {
 
 const Link = styled.a`
   margin-bottom: 50px;
+  text-decoration: none;
   width: fit-content;
+  color: inherit;
 `;
 
 const Wrapper = styled.h1`

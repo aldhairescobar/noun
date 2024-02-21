@@ -1,5 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
+import Header from "../Header";
 
 function Logo() {
   return (
@@ -10,10 +11,15 @@ function Logo() {
 }
 
 const Link = styled.a`
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
   text-decoration: none;
   width: fit-content;
   color: inherit;
+
+  ${Header.Wrapper} & {
+    position: relative;
+    bottom: 2px;
+  }
 `;
 
 const Wrapper = styled.h1`

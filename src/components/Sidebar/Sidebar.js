@@ -8,7 +8,6 @@ function Sidebar() {
     <Aside>
       <Header>
         <Logo />
-        <a href="/">Home</a>
       </Header>
       <p>All Books</p>
       <Nav>

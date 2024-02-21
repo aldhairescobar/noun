@@ -57,3 +57,15 @@ main > p {
   padding: 140px 0;
   font-size: 1.25rem;
 }
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}

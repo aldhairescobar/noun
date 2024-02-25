@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from "../Logo";
 import { styled } from "styled-components";
+import Icon from "../Icon/Icon";
 import profilePic from "../../assets/profile-pic.png";
 
 function Sidebar() {
@@ -9,16 +10,18 @@ function Sidebar() {
       <Header>
         <Logo />
       </Header>
-      <p>All Books</p>
       <Nav>
         <li>
-          <a href="/">To Read</a>
+          <NavLink href="/">
+            <Icon id="bookmark" strokeWidth={1.5} />
+            To Read
+          </NavLink>
         </li>
         <li>
-          <a href="/">Reading</a>
+          <NavLink href="/">Reading</NavLink>
         </li>
         <li>
-          <a href="/">Finished</a>
+          <NavLink href="/">Finished</NavLink>
         </li>
       </Nav>
       <ProfileContainer>
@@ -74,18 +77,21 @@ const Nav = styled.ol`
   li {
     margin-bottom: 4px;
   }
+`;
 
-  a {
-    text-decoration: none;
-    display: block;
-    color: inherit;
-    font-size: 1.125rem;
-    padding: 4px 10px;
-    margin-left: -10px;
-    border-radius: 5px;
-  }
+const NavLink = styled.a`
+  display: flex;
+  gap: 8px;
 
-  a:hover {
+  text-decoration: none;
+
+  color: inherit;
+  font-size: 1.125rem;
+  padding: 6px 10px;
+  margin-left: -10px;
+  border-radius: 5px;
+
+  &:hover {
     background-color: hsl(264, 57%, 38%);
   }
 `;

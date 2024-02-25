@@ -103,6 +103,11 @@ const FormWrapper = styled.div`
     margin-left: 32px;
     margin-right: 32px;
   }
+
+  @media ${QUERIES.phoneAndSmaller} {
+    margin-left: 24px;
+    margin-right: 24px;
+  }
 `;
 
 const Form = styled.form`
@@ -123,6 +128,12 @@ const TextInput = styled.input`
   border-right: none;
   border-radius: 5px 0 0 5px;
   padding: 0 12px;
+
+  @media ${QUERIES.phoneAndSmaller} {
+    width: 100%;
+    border: 1px solid hsl(0, 0%, 70%);
+    border-radius: 5px;
+  }
 `;
 
 const SubmitBtn = styled.button`
@@ -133,6 +144,11 @@ const SubmitBtn = styled.button`
   padding: 0 18px;
   border-radius: 0 5px 5px 0;
   border: 1px solid transparent;
+  color: hsl(0, 0%, 0%);
+
+  @media ${QUERIES.phoneAndSmaller} {
+    display: none;
+  }
 `;
 
 const Container = styled.div`

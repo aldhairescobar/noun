@@ -43,6 +43,10 @@ const Wrapper = styled.div`
     color: hsl(0, 0%, 16%);
     margin: 20px 32px 0;
   }
+
+  @media ${QUERIES.phoneAndSmaller} {
+    margin: 20px 24px 0;
+  }
 `;
 
 export default Header;

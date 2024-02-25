@@ -1,10 +1,11 @@
 import React from "react";
-import { Menu, X } from "react-feather";
+import { Menu, X, Bookmark } from "react-feather";
 import styled from "styled-components";
 
 const icons = {
   menu: Menu,
   close: X,
+  bookmark: Bookmark,
 };
 
 function Icon({ id, color, size, strokeWidth, ...delegated }) {

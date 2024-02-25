@@ -1,4 +1,5 @@
 import React from "react";
+import Icon from "../Icon/Icon";
 import { styled } from "styled-components";
 import { QUERIES } from "../../constants";
 import { truncateString } from "../../utils";
@@ -11,6 +12,9 @@ function BookCard({ id, ...rest }) {
   return (
     <BookItem>
       <Image src={rest.src} alt="" />
+      <IconWrapper>
+        <Icon id="bookmark" strokeWidth={0.8} />
+      </IconWrapper>
       <Info>
         <Title>{truncateString(rest.title, 40)}</Title>
         <Author>by {rest.authors} </Author>
@@ -33,6 +37,7 @@ function BookCard({ id, ...rest }) {
 }
 
 const BookItem = styled.div`
+  position: relative;
   flex: 1 1 250px;
   max-width: 350px;
   height: 330px;
@@ -46,13 +51,16 @@ const BookItem = styled.div`
   @media ${QUERIES.laptopAndSmaller} {
     flex-basis: 230px;
     max-width: 250px;
-    height: 310px;
+    height: 290px;
   }
 
   @media ${QUERIES.tabletAndSmaller} {
     flex-basis: 200px;
-    max-width: 250px;
-    height: 290px;
+  }
+
+  @media ${QUERIES.phoneAndSmaller} {
+    flex-basis: 200px;
+    max-width: 220px;
   }
 `;
 
@@ -104,6 +112,12 @@ const Author = styled.p`
   @media ${QUERIES.laptopAndSmaller} {
     font-size: ${14 / 16}rem;
   }
+`;
+
+const IconWrapper = styled.div`
+  position: absolute;
+  top: 6px;
+  right: 10px;
 `;
 
 export default BookCard;

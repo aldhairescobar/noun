@@ -38,6 +38,11 @@ const Wrapper = styled.div`
     justify-content: flex-start;
     padding: 60px 0;
   }
+
+  @media ${QUERIES.phoneAndSmaller} {
+    margin: 0 24px;
+    justify-content: center;
+  }
 `;
 
 export default BookGrid;

@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 import BOOKS from "../../data";
 import { QUERIES } from "../../constants";
 
-function BookGrid({ searchResults, addToRead, booksToRead }) {
+function BookGrid({ searchResults, handleToRead, booksToRead }) {
   /* if (searchResults === undefined || searchResults.length === 0) {
     return <p>No Results</p>;
   } */
@@ -19,7 +19,7 @@ function BookGrid({ searchResults, addToRead, booksToRead }) {
         <BookCard
           key={id}
           id={id}
-          addToRead={addToRead}
+          handleToRead={handleToRead}
           booksToRead={booksToRead}
           {...rest}
         />

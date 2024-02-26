@@ -7,24 +7,25 @@ import { truncateString } from "../../utils";
 
 /* Truncate authors too... */
 
-function BookCard({ id, addToRead, booksToRead, ...rest }) {
-  /* console.log(rest); */
+function BookCard({ id, handleToRead, booksToRead, ...rest }) {
   const found = booksToRead?.find((book) => book.id === id);
-
-  console.log(found);
-  console.log(booksToRead);
-
   const fill = found;
+
+  const author = truncateString(rest.authors[0], 20);
+
+  console.log(author);
+  /* console.log(found);
+  console.log(booksToRead); */
 
   return (
     <BookItem>
       <Image src={rest.src} alt="" />
-      <IconWrapper onClick={() => addToRead(id)}>
+      <IconWrapper onClick={() => handleToRead(id)}>
         <Icon id="bookmark" isfilled={fill} strokeWidth={0.8} />
       </IconWrapper>
       <Info>
         <Title>{truncateString(rest.title, 40)}</Title>
-        <Author>by {rest.authors} </Author>
+        <Author>by {author} </Author>
       </Info>
     </BookItem>
   );

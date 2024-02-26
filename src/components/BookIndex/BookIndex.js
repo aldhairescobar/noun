@@ -16,9 +16,25 @@ function BookIndex() {
 
   const [booksToRead, setBooksToRead] = React.useState([]);
 
-  function addToRead(id) {
-    const item = BOOKS.filter((book) => book.id === id);
-    setBooksToRead([...booksToRead, ...item]);
+  /* 
+  - handleToRead
+    - if the book is in the state remove it (filter)
+    - if the book isn't in the state add it.
+  
+  */
+
+  console.log(booksToRead);
+
+  function handleToRead(id) {
+    const found = booksToRead?.find((book) => book.id === id);
+
+    if (!found) {
+      const item = BOOKS.filter((book) => book.id === id);
+      setBooksToRead([...booksToRead, ...item]);
+    } else {
+      const nextBooks = booksToRead.filter((book) => book.id !== id);
+      setBooksToRead(nextBooks);
+    }
   }
 
   async function handleSubmit(event) {
@@ -71,7 +87,7 @@ function BookIndex() {
           {status === "idle" && (
             <BookGrid
               searchResults={searchResults}
-              addToRead={addToRead}
+              handleToRead={handleToRead}
               booksToRead={booksToRead}
             />
           )}

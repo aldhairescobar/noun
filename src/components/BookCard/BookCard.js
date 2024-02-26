@@ -1,4 +1,5 @@
 import React from "react";
+import UnstyledButton from "../UnstyledButton/UnstyledButton";
 import Icon from "../Icon/Icon";
 import { styled } from "styled-components";
 import { QUERIES } from "../../constants";
@@ -6,14 +7,20 @@ import { truncateString } from "../../utils";
 
 /* Truncate authors too... */
 
-function BookCard({ id, ...rest }) {
-  console.log(rest);
+function BookCard({ id, addToRead, booksToRead, ...rest }) {
+  /* console.log(rest); */
+  const found = booksToRead?.find((book) => book.id === id);
+
+  console.log(found);
+  console.log(booksToRead);
+
+  const fill = found;
 
   return (
     <BookItem>
       <Image src={rest.src} alt="" />
-      <IconWrapper>
-        <Icon id="bookmark" strokeWidth={0.8} />
+      <IconWrapper onClick={() => addToRead(id)}>
+        <Icon id="bookmark" isfilled={fill} strokeWidth={0.8} />
       </IconWrapper>
       <Info>
         <Title>{truncateString(rest.title, 40)}</Title>
@@ -114,7 +121,7 @@ const Author = styled.p`
   }
 `;
 
-const IconWrapper = styled.div`
+const IconWrapper = styled(UnstyledButton)`
   position: absolute;
   top: 6px;
   right: 10px;

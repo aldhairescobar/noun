@@ -2,6 +2,7 @@ import React from "react";
 import Sidebar from "../Sidebar";
 import BookGrid from "../BookGrid";
 import Header from "../Header";
+import BOOKS from "../../data";
 import { styled } from "styled-components";
 import { QUERIES } from "../../constants";
 
@@ -12,6 +13,13 @@ function BookIndex() {
   const [searchTerm, useSearchTerm] = React.useState("");
   const [searchResults, useSearchResults] = React.useState();
   const [status, useStatus] = React.useState("idle");
+
+  const [booksToRead, setBooksToRead] = React.useState([]);
+
+  function addToRead(id) {
+    const item = BOOKS.filter((book) => book.id === id);
+    setBooksToRead([...booksToRead, ...item]);
+  }
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -60,7 +68,13 @@ function BookIndex() {
           {/* {status === "idle" && <p>Welcome to Noun!</p>}
           {status === "loading" && <p>Searching...</p>}
           {status === "error" && <p>Something went wrong!</p>} */}
-          {status === "idle" && <BookGrid searchResults={searchResults} />}
+          {status === "idle" && (
+            <BookGrid
+              searchResults={searchResults}
+              addToRead={addToRead}
+              booksToRead={booksToRead}
+            />
+          )}
         </Container>
       </Main>
     </>

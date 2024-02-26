@@ -8,8 +8,9 @@ const icons = {
   bookmark: Bookmark,
 };
 
-function Icon({ id, color, size, strokeWidth, ...delegated }) {
+function Icon({ id, isfilled, color, size, strokeWidth, ...delegated }) {
   const Component = icons[id];
+  const fill = isfilled ? "black" : "none";
 
   if (!Component) {
     throw new Error(`No icon found for ID: ${id}`);
@@ -17,7 +18,7 @@ function Icon({ id, color, size, strokeWidth, ...delegated }) {
 
   return (
     <Wrapper strokeWidth={strokeWidth} {...delegated}>
-      <Component color={color} size={size} />
+      <Component color={color} size={size} fill={fill} />
     </Wrapper>
   );
 }

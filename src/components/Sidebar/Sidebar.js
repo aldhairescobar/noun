@@ -18,7 +18,10 @@ function Sidebar() {
           </NavLink>
         </li>
         <li>
-          <NavLink href="/">Reading</NavLink>
+          <NavLink href="/">
+            <Icon id="reading" strokeWidth={1.5} />
+            Reading
+          </NavLink>
         </li>
         <li>
           <NavLink href="/">Finished</NavLink>

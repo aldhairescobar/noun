@@ -4,7 +4,13 @@ import { styled } from "styled-components";
 import BOOKS from "../../data";
 import { QUERIES } from "../../constants";
 
-function BookGrid({ searchResults, handleToRead, booksToRead }) {
+function BookGrid({
+  searchResults,
+  booksToRead,
+  handleToRead,
+  readingBooks,
+  handleReadingBooks,
+}) {
   /* if (searchResults === undefined || searchResults.length === 0) {
     return <p>No Results</p>;
   } */
@@ -19,8 +25,10 @@ function BookGrid({ searchResults, handleToRead, booksToRead }) {
         <BookCard
           key={id}
           id={id}
-          handleToRead={handleToRead}
           booksToRead={booksToRead}
+          handleToRead={handleToRead}
+          readingBooks={readingBooks}
+          handleReadingBooks={handleReadingBooks}
           {...rest}
         />
       ))}

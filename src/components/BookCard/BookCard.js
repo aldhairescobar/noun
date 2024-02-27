@@ -5,26 +5,33 @@ import { styled } from "styled-components";
 import { QUERIES } from "../../constants";
 import { truncateString } from "../../utils";
 
-/* Truncate authors too... */
-
-function BookCard({ id, handleToRead, booksToRead, ...rest }) {
-  const found = booksToRead?.find((book) => book.id === id);
-  const fill = found;
+function BookCard({
+  id,
+  booksToRead,
+  readingBooks,
+  handleToRead,
+  handleReadingBooks,
+  ...rest
+}) {
+  const isBookmarked = booksToRead.some((book) => book.id === id);
+  const isReading = readingBooks.some((book) => book.id === id);
 
   const author = truncateString(rest.authors[0], 20);
-
-  console.log(author);
-  /* console.log(found);
-  console.log(booksToRead); */
+  const title = truncateString(rest.title, 40);
 
   return (
     <BookItem>
       <Image src={rest.src} alt="" />
-      <IconWrapper onClick={() => handleToRead(id)}>
-        <Icon id="bookmark" isfilled={fill} strokeWidth={0.8} />
-      </IconWrapper>
+      <ActionsWrapper>
+        <IconWrapper onClick={() => handleToRead(id)}>
+          <Icon id="bookmark" isfilled={isBookmarked} strokeWidth={0.8} />
+        </IconWrapper>
+        <IconWrapper onClick={() => handleReadingBooks(id)}>
+          <Icon id="reading" isfilled={isReading} strokeWidth={0.8} />
+        </IconWrapper>
+      </ActionsWrapper>
       <Info>
-        <Title>{truncateString(rest.title, 40)}</Title>
+        <Title>{title}</Title>
         <Author>by {author} </Author>
       </Info>
     </BookItem>
@@ -122,10 +129,20 @@ const Author = styled.p`
   }
 `;
 
-const IconWrapper = styled(UnstyledButton)`
+const ActionsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
   position: absolute;
   top: 6px;
   right: 10px;
+`;
+
+const IconWrapper = styled(UnstyledButton)`
+  /* position: absolute;
+  top: 6px;
+  right: 10px; */
 `;
 
 export default BookCard;

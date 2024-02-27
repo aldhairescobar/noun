@@ -1,16 +1,17 @@
 import React from "react";
-import { Menu, X, Bookmark } from "react-feather";
+import { Menu, X, Bookmark, Eye } from "react-feather";
 import styled from "styled-components";
 
 const icons = {
   menu: Menu,
   close: X,
   bookmark: Bookmark,
+  reading: Eye,
 };
 
 function Icon({ id, isfilled, color, size, strokeWidth, ...delegated }) {
   const Component = icons[id];
-  const fill = isfilled ? "black" : "none";
+  const fill = isfilled ? "#ffd375" : "none";
 
   if (!Component) {
     throw new Error(`No icon found for ID: ${id}`);

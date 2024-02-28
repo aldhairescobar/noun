@@ -3,7 +3,6 @@ import Sidebar from "../Sidebar";
 import SearchBar from "../SearchBar/SearchBar";
 import BookGrid from "../BookGrid";
 import Header from "../Header";
-import BOOKS from "../../data";
 import { styled } from "styled-components";
 import { QUERIES } from "../../constants";
 
@@ -15,37 +14,46 @@ function BookIndex() {
   const [searchResults, setSearchResults] = React.useState();
   const [status, setStatus] = React.useState("idle");
 
-  const [booksToRead, setBooksToRead] = React.useState([]);
-  const [readingBooks, setReadingBooks] = React.useState([]);
+  const [booksToRead, setBooksToRead] = React.useState(() => {
+    const storedValue = window.localStorage.getItem("books-to-read");
+    return JSON.parse(storedValue) || [];
+  });
+  const [readingBooks, setReadingBooks] = React.useState(() => {
+    const storedValue = window.localStorage.getItem("reading-books");
+    return JSON.parse(storedValue) || [];
+  });
+
+  React.useEffect(() => {
+    window.localStorage.setItem("books-to-read", JSON.stringify(booksToRead));
+  }, [booksToRead]);
+
+  React.useEffect(() => {
+    window.localStorage.setItem("reading-books", JSON.stringify(readingBooks));
+  }, [readingBooks]);
+
+  console.log(searchResults);
 
   console.log(booksToRead);
   console.log(readingBooks);
-  /* 
-  - handleToRead
-    - if the book is in the state remove it (filter)
-    - if the book isn't in the state add it.
-  */
 
-  function handleToRead(id) {
-    const found = booksToRead?.find((book) => book.id === id);
+  function handleToRead(book) {
+    const isBookToRead = booksToRead.some((item) => item.id === book.id);
 
-    if (!found) {
-      const item = BOOKS.filter((book) => book.id === id);
-      setBooksToRead([...booksToRead, ...item]);
+    if (!isBookToRead) {
+      setBooksToRead([...booksToRead, book]);
     } else {
-      const nextBooks = booksToRead.filter((book) => book.id !== id);
+      const nextBooks = booksToRead.filter((item) => item.id !== book.id);
       setBooksToRead(nextBooks);
     }
   }
 
-  function handleReadingBooks(id) {
-    const found = readingBooks?.find((book) => book.id === id);
+  function handleReadingBooks(book) {
+    const isBookReading = readingBooks.some((item) => item.id === book.id);
 
-    if (!found) {
-      const item = BOOKS.filter((book) => book.id === id);
-      setReadingBooks([...readingBooks, ...item]);
+    if (!isBookReading) {
+      setReadingBooks([...readingBooks, book]);
     } else {
-      const nextBooks = readingBooks.filter((book) => book.id !== id);
+      const nextBooks = readingBooks.filter((book) => book.id !== book.id);
       setReadingBooks(nextBooks);
     }
   }
@@ -56,7 +64,7 @@ function BookIndex() {
     setStatus("loading");
 
     const response = await fetch(
-      `${ENDPOINT}${searchTerm}+intitle:${searchTerm}&printType=books&${API_KEY}`
+      `${ENDPOINT}${searchTerm}+intitle:${searchTerm}&maxResults=6&printType=books&${API_KEY}`
     );
     const json = await response.json();
 
@@ -81,10 +89,10 @@ function BookIndex() {
             setSearchTerm={setSearchTerm}
             handleSubmit={handleSubmit}
           />
-          {/* {status === "idle" && <p>Welcome to Noun!</p>}
+          {status === "idle" && <p>Welcome to Noun!</p>}
           {status === "loading" && <p>Searching...</p>}
-          {status === "error" && <p>Something went wrong!</p>} */}
-          {status === "idle" && (
+          {status === "error" && <p>Something went wrong!</p>}
+          {status === "success" && (
             <BookGrid
               searchResults={searchResults}
               booksToRead={booksToRead}
@@ -98,8 +106,6 @@ function BookIndex() {
     </>
   );
 }
-
-/* Header, search component */
 
 const DesktopMenu = styled.div`
   @media ${QUERIES.tabletAndSmaller} {
@@ -121,8 +127,23 @@ const Container = styled.div`
   text-align: center;
   padding-top: 30px;
 
+  & > p {
+    font-size: ${28 / 16}rem;
+    margin: 120px 32px 0;
+  }
+
   @media ${QUERIES.tabletAndSmaller} {
     padding-top: 16px;
+
+    & > p {
+      font-size: ${28 / 16}rem;
+    }
+  }
+
+  @media ${QUERIES.phoneAndSmaller} {
+    & > p {
+      font-size: ${20 / 16}rem;
+    }
   }
 `;
 

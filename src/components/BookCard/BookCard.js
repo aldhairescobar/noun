@@ -11,13 +11,56 @@ function BookCard({
   readingBooks,
   handleToRead,
   handleReadingBooks,
-  ...rest
+  bookObj,
 }) {
   const isBookmarked = booksToRead.some((book) => book.id === id);
   const isReading = readingBooks.some((book) => book.id === id);
 
-  const author = truncateString(rest.authors[0], 20);
-  const title = truncateString(rest.title, 40);
+  let author;
+  let title;
+
+  if (bookObj.volumeInfo.authors) {
+    author = truncateString(bookObj.volumeInfo.authors[0], 20);
+    title = truncateString(bookObj.volumeInfo.title, 40);
+  } else {
+    author = "Author missing";
+    title = "Title missing";
+  }
+
+  return (
+    <BookItem>
+      <Image
+        src={`https://books.google.com/books/content?id=${id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`}
+        alt=""
+      />
+      <ActionsWrapper>
+        <IconWrapper
+          onClick={() =>
+            handleToRead({
+              id,
+              volumeInfo: bookObj.volumeInfo,
+            })
+          }
+        >
+          <Icon id="bookmark" isfilled={isBookmarked} strokeWidth={0.8} />
+        </IconWrapper>
+        <IconWrapper
+          onClick={() =>
+            handleReadingBooks({
+              id,
+              volumeInfo: bookObj.volumeInfo,
+            })
+          }
+        >
+          <Icon id="reading" isfilled={isReading} strokeWidth={0.8} />
+        </IconWrapper>
+      </ActionsWrapper>
+      <Info>
+        <Title>{title}</Title>
+        <Author>by {author}</Author>
+      </Info>
+    </BookItem>
+  );
 
   return (
     <BookItem>
@@ -33,19 +76,6 @@ function BookCard({
       <Info>
         <Title>{title}</Title>
         <Author>by {author} </Author>
-      </Info>
-    </BookItem>
-  );
-
-  return (
-    <BookItem>
-      <img
-        src={`https://books.google.com/books/content?id=${id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`}
-        alt=""
-      />
-      <Info>
-        <Title>{truncateString(volumeInfo.title, 40)}</Title>
-        <Author>by {volumeInfo.authors}</Author>
       </Info>
     </BookItem>
   );

@@ -11,16 +11,32 @@ function BookGrid({
   readingBooks,
   handleReadingBooks,
 }) {
-  /* if (searchResults === undefined || searchResults.length === 0) {
+  if (searchResults === undefined || searchResults.length === 0) {
     return <p>No Results</p>;
-  } */
+  }
 
   return (
     <Wrapper>
-      {/* {searchResults.map(({ id, volumeInfo }) => (
-        <SearchResult key={id} id={id} volumeInfo={volumeInfo} />
-      ))} */}
+      {searchResults.map((book) => {
+        const key = `${book.id}-${book.etag}`;
 
+        return (
+          <BookCard
+            key={key}
+            id={book.id}
+            booksToRead={booksToRead}
+            handleToRead={handleToRead}
+            readingBooks={readingBooks}
+            handleReadingBooks={handleReadingBooks}
+            bookObj={book}
+          />
+        );
+      })}
+    </Wrapper>
+  );
+
+  return (
+    <Wrapper>
       {BOOKS.map(({ id, ...rest }) => (
         <BookCard
           key={id}

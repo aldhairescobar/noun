@@ -3,6 +3,7 @@ import Logo from "../Logo";
 import { styled } from "styled-components";
 import Icon from "../Icon/Icon";
 import profilePic from "../../assets/profile-pic.png";
+import { Link as LinkRouter } from "react-router-dom";
 
 function Sidebar() {
   return (
@@ -12,19 +13,19 @@ function Sidebar() {
       </Header>
       <Nav>
         <li>
-          <NavLink href="/">
+          <NavLink to="to-read">
             <Icon id="bookmark" strokeWidth={1.5} />
             To Read
           </NavLink>
         </li>
         <li>
-          <NavLink href="/">
+          <NavLink to="reading">
             <Icon id="reading" strokeWidth={1.5} />
             Reading
           </NavLink>
         </li>
         <li>
-          <NavLink href="/">Finished</NavLink>
+          <NavLink to="/">Finished</NavLink>
         </li>
       </Nav>
       <ProfileContainer>
@@ -82,7 +83,7 @@ const Nav = styled.ol`
   }
 `;
 
-const NavLink = styled.a`
+const NavLink = styled(LinkRouter)`
   display: flex;
   gap: 8px;
 

@@ -1,17 +1,17 @@
 import React from "react";
 import { styled } from "styled-components";
 import Header from "../Header";
+import { Link as LinkRouter } from "react-router-dom";
 
 function Logo() {
   return (
-    <Link href="/">
+    <Link to="/">
       <Wrapper>noun</Wrapper>
     </Link>
   );
 }
 
-const Link = styled.a`
-  /* margin-bottom: 50px; */
+const Link = styled(LinkRouter)`
   text-decoration: none;
   width: fit-content;
   color: inherit;

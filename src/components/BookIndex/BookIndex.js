@@ -1,8 +1,7 @@
 import React from "react";
-import Sidebar from "../Sidebar";
+import Navigation from "../Navigation/Navigation";
 import SearchBar from "../SearchBar/SearchBar";
 import BookGrid from "../BookGrid";
-import Header from "../Header";
 import { styled } from "styled-components";
 import { QUERIES } from "../../constants";
 
@@ -78,10 +77,7 @@ function BookIndex() {
 
   return (
     <>
-      <Header />
-      <DesktopMenu>
-        <Sidebar />
-      </DesktopMenu>
+      <Navigation />
       <Main>
         <Container>
           <SearchBar
@@ -89,7 +85,7 @@ function BookIndex() {
             setSearchTerm={setSearchTerm}
             handleSubmit={handleSubmit}
           />
-          {status === "idle" && <p>Welcome to Noun!</p>}
+          {status === "idle" && <p>Welcome to noun!</p>}
           {status === "loading" && <p>Searching...</p>}
           {status === "error" && <p>Something went wrong!</p>}
           {status === "success" && (
@@ -106,12 +102,6 @@ function BookIndex() {
     </>
   );
 }
-
-const DesktopMenu = styled.div`
-  @media ${QUERIES.tabletAndSmaller} {
-    display: none;
-  }
-`;
 
 const Main = styled.main`
   padding-left: 220px;

@@ -87,6 +87,7 @@ const SubmitBtn = styled.button`
   border-radius: 0 5px 5px 0;
   border: 1px solid transparent;
   color: hsl(0, 0%, 0%);
+  cursor: pointer;
 
   @media ${QUERIES.phoneAndSmaller} {
     display: none;

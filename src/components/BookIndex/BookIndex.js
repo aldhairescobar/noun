@@ -4,6 +4,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import BookGrid from "../BookGrid";
 import { styled } from "styled-components";
 import { QUERIES } from "../../constants";
+import useStickyState from "../../hooks/use-sticky-state";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const ENDPOINT = "https://www.googleapis.com/books/v1/volumes?q=";
@@ -13,22 +14,8 @@ function BookIndex() {
   const [searchResults, setSearchResults] = React.useState();
   const [status, setStatus] = React.useState("idle");
 
-  const [booksToRead, setBooksToRead] = React.useState(() => {
-    const storedValue = window.localStorage.getItem("books-to-read");
-    return JSON.parse(storedValue) || [];
-  });
-  const [readingBooks, setReadingBooks] = React.useState(() => {
-    const storedValue = window.localStorage.getItem("reading-books");
-    return JSON.parse(storedValue) || [];
-  });
-
-  React.useEffect(() => {
-    window.localStorage.setItem("books-to-read", JSON.stringify(booksToRead));
-  }, [booksToRead]);
-
-  React.useEffect(() => {
-    window.localStorage.setItem("reading-books", JSON.stringify(readingBooks));
-  }, [readingBooks]);
+  const [booksToRead, setBooksToRead] = useStickyState([], "books-to-read");
+  const [readingBooks, setReadingBooks] = useStickyState([], "reading-books");
 
   console.log(searchResults);
 

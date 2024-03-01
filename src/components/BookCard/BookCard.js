@@ -59,24 +59,6 @@ function BookCard({ id, bookObj }) {
       </Info>
     </BookItem>
   );
-
-  return (
-    <BookItem>
-      <Image src={rest.src} alt="" />
-      <ActionsWrapper>
-        <IconWrapper onClick={() => handleToRead(id)}>
-          <Icon id="bookmark" isfilled={isBookmarked} strokeWidth={0.8} />
-        </IconWrapper>
-        <IconWrapper onClick={() => handleReadingBooks(id)}>
-          <Icon id="reading" isfilled={isReading} strokeWidth={0.8} />
-        </IconWrapper>
-      </ActionsWrapper>
-      <Info>
-        <Title>{title}</Title>
-        <Author>by {author} </Author>
-      </Info>
-    </BookItem>
-  );
 }
 
 const BookItem = styled.div`

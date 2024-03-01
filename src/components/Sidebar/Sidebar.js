@@ -13,7 +13,6 @@ function Sidebar() {
       </Header>
       <Nav>
         <li>
-          <a href={`/contacts/1`}>Your Name</a>
           <NavLink to="to-read">
             <Icon id="bookmark" strokeWidth={1.5} />
             To Read

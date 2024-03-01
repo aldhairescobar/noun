@@ -18,22 +18,6 @@ function BookGrid({ searchResults }) {
       })}
     </Wrapper>
   );
-
-  return (
-    <Wrapper>
-      {BOOKS.map(({ id, ...rest }) => (
-        <BookCard
-          key={id}
-          id={id}
-          booksToRead={booksToRead}
-          handleToRead={handleToRead}
-          readingBooks={readingBooks}
-          handleReadingBooks={handleReadingBooks}
-          {...rest}
-        />
-      ))}
-    </Wrapper>
-  );
 }
 
 const Wrapper = styled.div`

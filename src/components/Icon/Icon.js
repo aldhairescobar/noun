@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu, X, Bookmark, Eye } from "react-feather";
+import { Menu, X, Bookmark, Eye, Trash } from "react-feather";
 import styled from "styled-components";
 
 const icons = {
@@ -7,6 +7,7 @@ const icons = {
   close: X,
   bookmark: Bookmark,
   reading: Eye,
+  trash: Trash,
 };
 
 function Icon({ id, isfilled, color, size, strokeWidth, ...delegated }) {

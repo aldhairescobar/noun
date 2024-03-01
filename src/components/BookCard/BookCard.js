@@ -4,15 +4,13 @@ import Icon from "../Icon/Icon";
 import { styled } from "styled-components";
 import { QUERIES } from "../../constants";
 import { truncateString } from "../../utils";
+import { ToReadListContext } from "../ToReadListProvider";
+import { ReadingListContext } from "../ReadingListProvider";
 
-function BookCard({
-  id,
-  booksToRead,
-  readingBooks,
-  handleToRead,
-  handleReadingBooks,
-  bookObj,
-}) {
+function BookCard({ id, bookObj }) {
+  const { booksToRead, handleToRead } = React.useContext(ToReadListContext);
+  const { readingBooks, handleReadingBooks } =
+    React.useContext(ReadingListContext);
   const isBookmarked = booksToRead.some((book) => book.id === id);
   const isReading = readingBooks.some((book) => book.id === id);
 

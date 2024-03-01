@@ -1,32 +1,25 @@
 import React from "react";
 import Navigation from "../Navigation";
+import ToReadListProvider from "../ToReadListProvider";
+import ReadingListProvider from "../ReadingListProvider";
 import { styled } from "styled-components";
 import { QUERIES } from "../../constants";
-
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import BookIndex from "../../pages/BookIndex";
-import ToRead from "./../../pages/ToRead";
-import Reading from "./../../pages/Reading";
-import ErrorPage from "./../../pages/ErrorPage";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <Navigation />
       <Main>
         <Container>
-          <Routes>
-            <Route
-              path="/"
-              element={<BookIndex />}
-              errorElement={<ErrorPage />}
-            />
-            <Route path="to-read" element={<ToRead />} />
-            <Route path="reading" element={<Reading />} />
-          </Routes>
+          <ToReadListProvider>
+            <ReadingListProvider>
+              <Outlet />
+            </ReadingListProvider>
+          </ToReadListProvider>
         </Container>
       </Main>
-    </BrowserRouter>
+    </>
   );
 }
 

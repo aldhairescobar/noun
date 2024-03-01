@@ -4,13 +4,7 @@ import { styled } from "styled-components";
 import BOOKS from "../../data";
 import { QUERIES } from "../../constants";
 
-function BookGrid({
-  searchResults,
-  booksToRead,
-  handleToRead,
-  readingBooks,
-  handleReadingBooks,
-}) {
+function BookGrid({ searchResults }) {
   if (searchResults === undefined || searchResults.length === 0) {
     return <p>No Results</p>;
   }
@@ -20,17 +14,7 @@ function BookGrid({
       {searchResults.map((book) => {
         const key = `${book.id}-${book.etag}`;
 
-        return (
-          <BookCard
-            key={key}
-            id={book.id}
-            booksToRead={booksToRead}
-            handleToRead={handleToRead}
-            readingBooks={readingBooks}
-            handleReadingBooks={handleReadingBooks}
-            bookObj={book}
-          />
-        );
+        return <BookCard key={key} id={book.id} bookObj={book} />;
       })}
     </Wrapper>
   );

@@ -24,10 +24,12 @@ function ToRead() {
 
         return (
           <BookItem key={book.id}>
-            <Image
-              src={`https://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`}
-              alt=""
-            />
+            <ImageWrapper>
+              <Image
+                src={`https://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`}
+                alt=""
+              />
+            </ImageWrapper>
             <ActionsWrapper>
               <IconWrapper>
                 <Icon id="trash" strokeWidth={0.8} />
@@ -48,16 +50,11 @@ const Wrapper = styled.div`
   padding: 80px 0;
   margin: 0 32px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   gap: 20px;
 
-  @media ${QUERIES.laptopAndSmaller} {
-    gap: 16px;
-  }
-
   @media ${QUERIES.tabletAndSmaller} {
-    justify-content: flex-start;
     padding: 60px 0;
   }
 
@@ -69,80 +66,60 @@ const Wrapper = styled.div`
 
 const BookItem = styled.div`
   position: relative;
-  flex: 1 1 250px;
-  max-width: 350px;
-  height: 330px;
+  width: 420px;
   display: flex;
-  flex-direction: column;
 
   border: 1px solid hsl(0, 0%, 90%);
   border-radius: 10px;
-  padding: 20px;
-
-  @media ${QUERIES.laptopAndSmaller} {
-    flex-basis: 230px;
-    max-width: 250px;
-    height: 290px;
-  }
-
-  @media ${QUERIES.tabletAndSmaller} {
-    flex-basis: 200px;
-  }
 
   @media ${QUERIES.phoneAndSmaller} {
-    flex-basis: 200px;
-    max-width: 220px;
+    width: 80%;
   }
+`;
+
+const ImageWrapper = styled.div`
+  min-width: 100px;
+  padding: 30px 24px;
+  border-right: 1px solid hsl(0, 0%, 90%);
 `;
 
 const Image = styled.img`
-  width: 150px;
-  height: 190px;
+  width: 100%;
+  height: 74px;
   object-fit: cover;
-  object-position: 0 0;
-  margin: 0 auto;
 
-  @media ${QUERIES.laptopAndSmaller} {
-    width: 130px;
-    height: 170px;
-  }
-
-  @media ${QUERIES.laptopAndSmaller} {
-    width: 110px;
-    height: 140px;
-  }
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 1.1px 1.5px 0px,
+    rgba(0, 0, 0, 0.1) 0px 2.8px 3.9px 0px,
+    rgba(0, 0, 0, 0.08) 0px 5.8px 7.9px 0px,
+    rgba(0, 0, 0, 0.06) 0px 12.0455px 16.4px 0px,
+    rgba(0, 0, 0, 0.04) 0px 33px 45px 0px;
 `;
 
 const Info = styled.div`
-  padding: 24px 0 0;
+  padding: 20px 30px;
   flex-grow: 1;
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
 
-  @media ${QUERIES.laptopAndSmaller} {
-    padding-top: 18px;
-  }
+  text-align: left;
 `;
 
 const Title = styled.h3`
   font-weight: 400;
-  font-size: ${15 / 16}rem;
+  font-size: ${14 / 16}rem;
   color: hsl(0, 0%, 10%);
+  margin-bottom: 6px;
 
-  @media ${QUERIES.laptopAndSmaller} {
-    font-size: ${14 / 16}rem;
+  @media ${QUERIES.phoneAndSmaller} {
+    margin-bottom: 4px;
   }
 `;
 
 const Author = styled.p`
-  font-size: ${15 / 16}rem;
+  font-size: ${11 / 16}rem;
   color: hsl(0, 0%, 30%);
-
-  @media ${QUERIES.laptopAndSmaller} {
-    font-size: ${14 / 16}rem;
-  }
 `;
 
 const ActionsWrapper = styled.div`
@@ -155,10 +132,6 @@ const ActionsWrapper = styled.div`
   right: 10px;
 `;
 
-const IconWrapper = styled(UnstyledButton)`
-  /* position: absolute;
-  top: 6px;
-  right: 10px; */
-`;
+const IconWrapper = styled(UnstyledButton)``;
 
 export default ToRead;

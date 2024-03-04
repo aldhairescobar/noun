@@ -68,6 +68,7 @@ const BookItem = styled.div`
   height: 330px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 
   border: 1px solid hsl(0, 0%, 90%);
   border-radius: 10px;
@@ -90,27 +91,24 @@ const BookItem = styled.div`
 `;
 
 const Image = styled.img`
-  width: 150px;
-  height: 190px;
-  object-fit: cover;
+  width: 130px;
+  max-height: 190px;
+  object-fit: fill;
   object-position: 0 0;
   margin: 0 auto;
-
-  @media ${QUERIES.laptopAndSmaller} {
-    width: 130px;
-    height: 170px;
-  }
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 1.1px 1.5px 0px,
+    rgba(0, 0, 0, 0.1) 0px 2.8px 3.9px 0px,
+    rgba(0, 0, 0, 0.08) 0px 5.8px 7.9px 0px,
+    rgba(0, 0, 0, 0.06) 0px 12.0455px 16.4px 0px,
+    rgba(0, 0, 0, 0.04) 0px 33px 45px 0px;
 
   @media ${QUERIES.laptopAndSmaller} {
     width: 110px;
-    height: 140px;
   }
 `;
 
 const Info = styled.div`
   padding: 24px 0 0;
-  flex-grow: 1;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -124,19 +122,11 @@ const Title = styled.h3`
   font-weight: 400;
   font-size: ${15 / 16}rem;
   color: hsl(0, 0%, 10%);
-
-  @media ${QUERIES.laptopAndSmaller} {
-    font-size: ${14 / 16}rem;
-  }
 `;
 
 const Author = styled.p`
-  font-size: ${15 / 16}rem;
+  font-size: ${13 / 16}rem;
   color: hsl(0, 0%, 30%);
-
-  @media ${QUERIES.laptopAndSmaller} {
-    font-size: ${14 / 16}rem;
-  }
 `;
 
 const ActionsWrapper = styled.div`
@@ -149,10 +139,6 @@ const ActionsWrapper = styled.div`
   right: 10px;
 `;
 
-const IconWrapper = styled(UnstyledButton)`
-  /* position: absolute;
-  top: 6px;
-  right: 10px; */
-`;
+const IconWrapper = styled(UnstyledButton)``;
 
 export default BookCard;

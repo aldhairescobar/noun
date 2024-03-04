@@ -7,7 +7,13 @@ import { QUERIES } from "../../constants";
 import { truncateString } from "../../utils";
 
 function ToRead() {
-  const { booksToRead } = React.useContext(ToReadListContext);
+  const { booksToRead, setBooksToRead } = React.useContext(ToReadListContext);
+
+  function handleDelete(id) {
+    const nextBooksToRead = booksToRead.filter((book) => book.id !== id);
+    setBooksToRead(nextBooksToRead);
+  }
+
   return (
     <Wrapper>
       {booksToRead.map((book) => {
@@ -31,8 +37,12 @@ function ToRead() {
               />
             </ImageWrapper>
             <ActionsWrapper>
-              <IconWrapper>
-                <Icon id="trash" strokeWidth={0.8} />
+              <IconWrapper
+                onClick={() => {
+                  handleDelete(book.id);
+                }}
+              >
+                <Icon id="trash" size={20} strokeWidth={0.8} />
               </IconWrapper>
             </ActionsWrapper>
             <Info>
@@ -73,7 +83,7 @@ const BookItem = styled.div`
   border-radius: 10px;
 
   @media ${QUERIES.phoneAndSmaller} {
-    width: 80%;
+    width: 90%;
   }
 `;
 
@@ -104,6 +114,10 @@ const Info = styled.div`
   justify-content: center;
 
   text-align: left;
+
+  @media ${QUERIES.phoneAndSmaller} {
+    padding: 20px 24px;
+  }
 `;
 
 const Title = styled.h3`

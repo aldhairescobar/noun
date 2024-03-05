@@ -12,6 +12,7 @@ function BookDisplay() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    setSearchTerm("");
 
     setStatus("loading");
 

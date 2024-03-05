@@ -17,16 +17,12 @@ function ToRead() {
   return (
     <Wrapper>
       {booksToRead.map((book) => {
-        let author;
-        let title;
-
-        if (book.volumeInfo.authors) {
-          author = truncateString(book.volumeInfo.authors[0], 20);
-          title = truncateString(book.volumeInfo.title, 40);
-        } else {
-          author = "Author missing";
-          title = "Title missing";
-        }
+        const author = book.volumeInfo.authors
+          ? truncateString(book.volumeInfo.authors[0], 20)
+          : "Author missing";
+        const title = book.volumeInfo.title
+          ? truncateString(book.volumeInfo.title, 40)
+          : "Title missing";
 
         return (
           <BookItem key={book.id}>
@@ -77,6 +73,7 @@ const Wrapper = styled.div`
 const BookItem = styled.div`
   position: relative;
   width: 420px;
+  min-height: 135px;
   display: flex;
 
   border: 1px solid hsl(0, 0%, 90%);
@@ -89,13 +86,14 @@ const BookItem = styled.div`
 
 const ImageWrapper = styled.div`
   min-width: 100px;
-  padding: 30px 24px;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
   border-right: 1px solid hsl(0, 0%, 90%);
 `;
 
 const Image = styled.img`
-  width: 100%;
-  height: 74px;
+  width: 60px;
   object-fit: cover;
 
   box-shadow: rgba(0, 0, 0, 0.15) 0px 1.1px 1.5px 0px,

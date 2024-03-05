@@ -1,7 +1,6 @@
 import React from "react";
 import BookCard from "../BookCard";
 import { styled } from "styled-components";
-import BOOKS from "../../data";
 import { QUERIES } from "../../constants";
 
 function BookGrid({ searchResults }) {
@@ -13,7 +12,6 @@ function BookGrid({ searchResults }) {
     <Wrapper>
       {searchResults.map((book) => {
         const key = `${book.id}-${book.etag}`;
-
         return <BookCard key={key} id={book.id} bookObj={book} />;
       })}
     </Wrapper>

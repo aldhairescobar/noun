@@ -1,10 +1,10 @@
 import React from "react";
 import Logo from "../Logo";
 import { styled } from "styled-components";
-import UnstyledButton from "../UnstyledButton/UnstyledButton";
-import Icon from "../Icon/Icon";
+import UnstyledButton from "../UnstyledButton";
+import Icon from "../Icon";
 import { QUERIES } from "../../constants";
-import MobileMenu from "../MobileMenu/MobileMenu";
+import MobileMenu from "../MobileMenu";
 
 function Header() {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);

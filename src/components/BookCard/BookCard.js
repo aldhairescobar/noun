@@ -1,5 +1,5 @@
 import React from "react";
-import UnstyledButton from "../UnstyledButton/UnstyledButton";
+import UnstyledButton from "../UnstyledButton";
 import Icon from "../Icon/Icon";
 import { styled } from "styled-components";
 import { QUERIES } from "../../constants";
@@ -14,16 +14,12 @@ function BookCard({ id, bookObj }) {
   const isBookmarked = booksToRead.some((book) => book.id === id);
   const isReading = readingBooks.some((book) => book.id === id);
 
-  let author;
-  let title;
-
-  if (bookObj.volumeInfo.authors) {
-    author = truncateString(bookObj.volumeInfo.authors[0], 20);
-    title = truncateString(bookObj.volumeInfo.title, 40);
-  } else {
-    author = "Author missing";
-    title = "Title missing";
-  }
+  const author = bookObj.volumeInfo.authors
+    ? truncateString(bookObj.volumeInfo.authors[0], 20)
+    : "Author missing";
+  const title = bookObj.volumeInfo.title
+    ? truncateString(bookObj.volumeInfo.title, 40)
+    : "Title missing";
 
   return (
     <BookItem>

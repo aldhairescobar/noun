@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import Icon from "../Icon/Icon";
-import UnstyledButton from "../UnstyledButton/UnstyledButton";
+import Icon from "../Icon";
+import UnstyledButton from "../UnstyledButton";
 import profilePic from "../../assets/profile-pic.png";
-import Logo from "../Logo";
 import { Root, Portal, Overlay, Content } from "@radix-ui/react-dialog";
+import { Link as LinkRouter } from "react-router-dom";
 
 function MobileMenu({ isOpen, onDismiss }) {
   return (
@@ -17,9 +17,13 @@ function MobileMenu({ isOpen, onDismiss }) {
             <Icon id="close" />
           </CloseButton>
           <Nav>
-            <NavLink>To Read</NavLink>
-            <NavLink>Reading</NavLink>
-            <NavLink>Finished</NavLink>
+            <NavLink to="to-read" onClick={onDismiss}>
+              To Read
+            </NavLink>
+            <NavLink to="reading" onClick={onDismiss}>
+              Reading
+            </NavLink>
+            {/* <NavLink>Finished</NavLink> */}
           </Nav>
 
           <Footer>
@@ -35,7 +39,7 @@ function MobileMenu({ isOpen, onDismiss }) {
 
 const Backdrop = styled(Overlay)`
   background: hsla(220, 5%, 40%, 0.8); /* Optional */
-  background-color: hsl(41, 100%, 73%, 0.6);
+  /* background-color: hsl(41, 100%, 73%, 0.6); */
   position: fixed;
   inset: 0;
   display: flex;
@@ -73,7 +77,7 @@ const Nav = styled.nav`
   flex-direction: column;
 `;
 
-const NavLink = styled.a`
+const NavLink = styled(LinkRouter)`
   text-decoration: none;
   display: block;
   color: inherit;

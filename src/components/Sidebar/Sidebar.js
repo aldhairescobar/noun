@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../Logo";
 import { styled } from "styled-components";
-import Icon from "../Icon/Icon";
+import Icon from "../Icon";
 import profilePic from "../../assets/profile-pic.png";
 import { Link as LinkRouter } from "react-router-dom";
 
@@ -24,9 +24,9 @@ function Sidebar() {
             Reading
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to="/">Finished</NavLink>
-        </li>
+        </li> */}
       </Nav>
       <ProfileContainer>
         <img src={profilePic} />

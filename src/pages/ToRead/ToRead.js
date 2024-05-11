@@ -14,51 +14,61 @@ function ToRead() {
     setBooksToRead(nextBooksToRead);
   }
 
-  return (
-    <Wrapper>
-      {booksToRead.map((book) => {
-        const author = book.volumeInfo.authors
-          ? truncateString(book.volumeInfo.authors[0], 20)
-          : "Author missing";
-        const title = book.volumeInfo.title
-          ? truncateString(book.volumeInfo.title, 40)
-          : "Title missing";
+  let numOfBooks;
+  if (booksToRead.length === 1) {
+    numOfBooks = "1 book";
+  } else {
+    numOfBooks = booksToRead.length + " books";
+  }
 
-        return (
-          <BookItem key={book.id}>
-            <ImageWrapper>
-              <Image
-                src={`https://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`}
-                alt=""
-              />
-            </ImageWrapper>
-            <ActionsWrapper>
-              <IconWrapper
-                onClick={() => {
-                  handleDelete(book.id);
-                }}
-              >
-                <Icon id="trash" size={20} strokeWidth={0.8} />
-              </IconWrapper>
-            </ActionsWrapper>
-            <Info>
-              <Title>{title}</Title>
-              <Author>by {author}</Author>
-            </Info>
-          </BookItem>
-        );
-      })}
-    </Wrapper>
+  return (
+    <Container>
+      <PageTitle>To Read</PageTitle>
+      <PageDescription>A collection of {numOfBooks}</PageDescription>
+      <BooksWrapper>
+        {booksToRead.map((book) => {
+          const author = book.volumeInfo.authors
+            ? truncateString(book.volumeInfo.authors[0], 20)
+            : "Author missing";
+          const title = book.volumeInfo.title
+            ? truncateString(book.volumeInfo.title, 40)
+            : "Title missing";
+
+          return (
+            <BookItem key={book.id}>
+              <ImageWrapper>
+                <Image
+                  src={`https://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`}
+                  alt=""
+                />
+              </ImageWrapper>
+              <ActionsWrapper>
+                <IconWrapper
+                  onClick={() => {
+                    handleDelete(book.id);
+                  }}
+                >
+                  <Icon id="trash" size={20} strokeWidth={0.8} />
+                </IconWrapper>
+              </ActionsWrapper>
+              <Info>
+                <Title>{title}</Title>
+                <Author>by {author}</Author>
+              </Info>
+            </BookItem>
+          );
+        })}
+      </BooksWrapper>
+    </Container>
   );
 }
 
-const Wrapper = styled.div`
+const Container = styled.div`
   padding: 80px 0;
   margin: 0 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
 
   @media ${QUERIES.tabletAndSmaller} {
     padding: 60px 0;
@@ -68,6 +78,28 @@ const Wrapper = styled.div`
     margin: 0 24px;
     justify-content: center;
   }
+`;
+
+const BooksWrapper = styled.div`
+  padding: 0;
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+`;
+
+const PageTitle = styled.h2`
+  font-weight: 400;
+  font-size: ${24 / 16}rem;
+  color: hsl(0, 0%, 10%);
+  margin-bottom: 4px;
+`;
+
+const PageDescription = styled.p`
+  font-weight: 400;
+  font-size: ${12 / 16}rem;
+  color: hsl(0, 0%, 10%);
 `;
 
 const BookItem = styled.div`

@@ -48,7 +48,7 @@ function ToRead() {
                     handleDelete(book.id);
                   }}
                 >
-                  <Icon id="trash" size={20} strokeWidth={0.8} />
+                  <Icon id="xcircle" size={20} strokeWidth={0.8} />
                 </IconWrapper>
               </ActionsWrapper>
               <Info>
@@ -176,6 +176,10 @@ const ActionsWrapper = styled.div`
   right: 10px;
 `;
 
-const IconWrapper = styled(UnstyledButton)``;
+const IconWrapper = styled(UnstyledButton)`
+  & > div > svg:hover {
+    fill: #ffd375;
+  }
+`;
 
 export default ToRead;

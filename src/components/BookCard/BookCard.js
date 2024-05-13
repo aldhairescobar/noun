@@ -135,6 +135,10 @@ const ActionsWrapper = styled.div`
   right: 10px;
 `;
 
-const IconWrapper = styled(UnstyledButton)``;
+const IconWrapper = styled(UnstyledButton)`
+  & > div > svg:hover {
+    fill: #ffd375;
+  }
+`;
 
 export default BookCard;

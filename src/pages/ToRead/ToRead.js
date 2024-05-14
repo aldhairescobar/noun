@@ -35,31 +35,43 @@ function ToRead() {
             : "Title missing";
 
           return (
-            <BookItem key={book.id}>
-              <ImageWrapper>
-                <Image
-                  src={`https://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`}
-                  alt=""
-                />
-              </ImageWrapper>
-              <ActionsWrapper>
-                <IconWrapper
-                  onClick={() => {
-                    handleDelete(book.id);
-                  }}
-                >
-                  <Icon id="xcircle" size={20} strokeWidth={0.8} />
-                </IconWrapper>
-              </ActionsWrapper>
-              <Info>
-                <Title>{title}</Title>
-                <Author>by {author}</Author>
-              </Info>
-            </BookItem>
+            <BookItem
+              key={book.id}
+              bookId={book.id}
+              title={title}
+              author={author}
+              handleDelete={handleDelete}
+            />
           );
         })}
       </BooksWrapper>
     </Container>
+  );
+}
+
+function BookItem({ bookId, title, author, handleDelete }) {
+  return (
+    <BookItemWrapper>
+      <ImageWrapper>
+        <Image
+          src={`https://books.google.com/books/content?id=${bookId}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`}
+          alt=""
+        />
+      </ImageWrapper>
+      <ActionsWrapper>
+        <IconWrapper
+          onClick={() => {
+            handleDelete(bookId);
+          }}
+        >
+          <Icon id="xcircle" size={20} strokeWidth={0.8} />
+        </IconWrapper>
+      </ActionsWrapper>
+      <Info>
+        <Title>{title}</Title>
+        <Author>by {author}</Author>
+      </Info>
+    </BookItemWrapper>
   );
 }
 
@@ -102,7 +114,7 @@ const PageDescription = styled.p`
   color: hsl(0, 0%, 10%);
 `;
 
-const BookItem = styled.div`
+const BookItemWrapper = styled.div`
   position: relative;
   width: 420px;
   min-height: 135px;

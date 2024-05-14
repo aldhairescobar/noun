@@ -3,7 +3,7 @@ import Logo from "../Logo";
 import { styled } from "styled-components";
 import Icon from "../Icon";
 import profilePic from "../../assets/profile-pic.png";
-import { Link as LinkRouter } from "react-router-dom";
+import { NavLink as LinkRouter } from "react-router-dom";
 
 function Sidebar() {
   return (
@@ -12,6 +12,12 @@ function Sidebar() {
         <Logo />
       </Header>
       <Nav>
+        <li>
+          <NavLink to="explore">
+            <Icon id="search" strokeWidth={1.5} />
+            Explore
+          </NavLink>
+        </li>
         <li>
           <NavLink to="to-read">
             <Icon id="bookmark" strokeWidth={1.5} />
@@ -80,6 +86,10 @@ const Nav = styled.ol`
 
   li {
     margin-bottom: 4px;
+  }
+
+  & a.active {
+    background-color: hsl(264, 57%, 38%);
   }
 `;
 

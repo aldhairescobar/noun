@@ -11,15 +11,19 @@ import BookIndex from "./pages/BookIndex";
 import ToRead from "./pages/ToRead";
 import Reading from "./pages/Reading";
 import NotFound from "./pages/NotFound";
+import SignUp from "./pages/SignUp";
 import "./global-styles.css";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />} errorElement={<NotFound />}>
-      <Route index element={<BookIndex />} />
-      <Route path="to-read" element={<ToRead />} />
-      <Route path="reading" element={<Reading />} />
-    </Route>
+    <>
+      <Route index element={<SignUp />} errorElement={<NotFound />} />
+      <Route path="/" element={<App />}>
+        <Route path="explore" element={<BookIndex />} />
+        <Route path="to-read" element={<ToRead />} />
+        <Route path="reading" element={<Reading />} />
+      </Route>
+    </>
   )
 );
 

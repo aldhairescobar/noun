@@ -34,7 +34,7 @@ function Sidebar() {
           <NavLink to="/">Finished</NavLink>
         </li> */}
       </Nav>
-      <ProfileContainer>
+      <ProfileContainer to="settings">
         <img src={profilePic} />
       </ProfileContainer>
     </Aside>
@@ -110,7 +110,8 @@ const NavLink = styled(LinkRouter)`
   }
 `;
 
-const ProfileContainer = styled.div`
+const ProfileContainer = styled(NavLink)`
+  display: block;
   margin-top: auto;
 `;
 

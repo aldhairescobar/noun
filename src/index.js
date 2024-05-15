@@ -12,6 +12,7 @@ import ToRead from "./pages/ToRead";
 import Reading from "./pages/Reading";
 import NotFound from "./pages/NotFound";
 import SignUp from "./pages/SignUp";
+import UserSettings from "./pages/UserSettings";
 import "./global-styles.css";
 
 const router = createBrowserRouter(
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
         <Route path="explore" element={<BookIndex />} />
         <Route path="to-read" element={<ToRead />} />
         <Route path="reading" element={<Reading />} />
+        <Route path="settings" element={<UserSettings />} />
       </Route>
     </>
   )
